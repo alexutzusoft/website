@@ -1,6 +1,6 @@
 # Personal Portfolio Website
 
-A modern, responsive portfolio website for showcasing developer profiles and projects. Features a clean, green-themed design with a futuristic/cyber-modern UI.
+A modern, responsive portfolio website for showcasing developer profiles and projects. Features a clean, purple-themed design with a futuristic/cyber-modern UI.
 
 ## Features
 
@@ -8,7 +8,6 @@ A modern, responsive portfolio website for showcasing developer profiles and pro
 - **Responsive Design** - Mobile-first approach with responsive layout
 - **Dark/Light Theme** - Toggle between dark and light modes
 - **GitHub API Integration** - Automatically fetches and displays public GitHub repositories
-- **Local Storage** - Caches GitHub data for 24 hours to reduce API calls
 - **Modern UI Elements** - Includes glassmorphism, animations, and a clean aesthetic
 - **Form Validation** - Client-side validation for the contact form
 

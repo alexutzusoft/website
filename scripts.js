@@ -264,7 +264,14 @@ function fetchGithubRepos() {
         })
         .catch(error => {
             console.error('Error:', error);
-            projectsGrid.innerHTML = `<div class="error-message">Failed to load repositories. Please try again later.</div>`;
+            // Remove the explicit error message and just show an empty grid
+            projectsGrid.innerHTML = '';
+            
+            // Update the section description to indicate the error
+            const sectionDescription = document.querySelector('#projects .section-description');
+            if (sectionDescription) {
+                sectionDescription.textContent = "The showcase of my GitHub repositories couldn't load, please try again later.";
+            }
         })
         .finally(() => {
             projectsLoader.style.display = 'none';
@@ -414,9 +421,12 @@ function renderRepos(repos) {
             ? repo.topLanguages.join('/') 
             : 'Unknown';
         
+        // Display 'AlexutzuSoft' instead of 'AlexutzuSxft'
+        const displayName = repo.name === 'AlexutzuSxft' ? 'AlexutzuSoft' : repo.name;
+        
         projectCard.innerHTML = `
             <div class="project-card-content">
-                <h3 class="project-name">${repo.name}</h3>
+                <h3 class="project-name">${displayName}</h3>
                 <p class="project-description">${description}</p>
                 <div class="project-meta">
                     <div class="project-language">${languagesDisplay}</div>
