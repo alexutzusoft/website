@@ -13,47 +13,103 @@ document.addEventListener('DOMContentLoaded', function() {
     fetchGithubRepos();
     initScrollReveal();
     initDiscordPopup();
+    
+    // Detect if device is touch-enabled
+    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
 
-    // Mobile Navigation Toggle
+    // Mobile Navigation Toggle with improved touch handling
     if (hamburger) {
-        hamburger.addEventListener('click', function() {
+        hamburger.addEventListener(isTouchDevice ? 'touchstart' : 'click', function(e) {
+            if (isTouchDevice) e.preventDefault();
             navLinks.classList.toggle('active');
             this.classList.toggle('active');
-        });
+            
+            // Add body scroll lock when nav is open
+            if (navLinks.classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
+        }, {passive: false});
     }
 
     // Close mobile nav when clicking a link
     navItems.forEach(item => {
-        item.addEventListener('click', function() {
-            navLinks.classList.remove('active');
-            hamburger.classList.remove('active');
+        item.addEventListener(isTouchDevice ? 'touchstart' : 'click', function(e) {
+            if (navLinks.classList.contains('active')) {
+                // For touch devices, prevent double triggering
+                if (isTouchDevice && e.type === 'touchstart') {
+                    e.preventDefault();
+                }
+                
+                navLinks.classList.remove('active');
+                hamburger.classList.remove('active');
+                document.body.style.overflow = '';
+            }
             
             // Remove active class from all links
             navItems.forEach(link => link.classList.remove('active'));
             
             // Add active class to clicked link
             this.classList.add('active');
-        });
+        }, {passive: false});
     });
 
     // Theme Toggle Functionality
     if (themeToggle) {
-        themeToggle.addEventListener('click', toggleTheme);
+        themeToggle.addEventListener(isTouchDevice ? 'touchstart' : 'click', function(e) {
+            if (isTouchDevice) e.preventDefault();
+            toggleTheme();
+        }, {passive: false});
     }
+
+    // Close nav when clicking outside
+    document.addEventListener(isTouchDevice ? 'touchstart' : 'click', function(e) {
+        if (navLinks.classList.contains('active') &&
+            !navLinks.contains(e.target) &&
+            !hamburger.contains(e.target)) {
+            navLinks.classList.remove('active');
+            hamburger.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    });
 
     // Scroll to Top Button
     window.addEventListener('scroll', handleScroll);
     if (scrollTopBtn) {
-        scrollTopBtn.addEventListener('click', function() {
+        scrollTopBtn.addEventListener(isTouchDevice ? 'touchstart' : 'click', function(e) {
+            if (isTouchDevice) e.preventDefault();
             window.scrollTo({
                 top: 0,
                 behavior: 'smooth'
             });
-        });
+        }, {passive: false});
     }
 
     // Set active nav item based on scroll position
     window.addEventListener('scroll', setActiveNavItem);
+    
+    // Optimization for mobile: debounce scroll events
+    function debounce(func, wait) {
+        let timeout;
+        return function() {
+            const context = this;
+            const args = arguments;
+            clearTimeout(timeout);
+            timeout = setTimeout(() => {
+                func.apply(context, args);
+            }, wait);
+        };
+    }
+    
+    // Use debounced versions for scroll-heavy functions
+    const debouncedSetActiveNavItem = debounce(setActiveNavItem, 100);
+    window.addEventListener('scroll', debouncedSetActiveNavItem);
+
+    // Optimize animations on mobile
+    if (isTouchDevice) {
+        document.body.classList.add('touch-device');
+    }
 });
 
 // Discord popup functionality
