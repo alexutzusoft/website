@@ -2,180 +2,401 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0, viewport-fit=cover">
-    <meta name="description" content="AlexutzuSoft - Software Developer, Cybersecurity researcher and engineer">
-    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
-    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <title>AlexutzuSoft - Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alexutzu - 14-Year-Old Innovator & CEO</title>
+    <meta name="description" content="Alexutzu - Building the future with Python, C#, AI platforms, and sleek dark UIs. Young CEO on a mission to change technology.">
     <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="dark-mode">
-    <div class="bg-shapes">
-        <div class="shape shape-1"></div>
-        <div class="shape shape-2"></div>
-        <div class="shape shape-3"></div>
-        <div class="shape shape-4"></div>
+<body>
+    <!-- Fixed Elements -->
+    <div class="fixed-controls">
+        <button id="audio-toggle" class="audio-toggle" title="Toggle Audio">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <path id="audio-icon" d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+            </svg>
+        </button>
+        <div class="theme-indicator">
+            <span id="theme-label">Adaptive Theme</span>
+        </div>
     </div>
-    
-    <header id="home">
-        <nav class="navbar">
-            <div class="logo">AlexutzuSoft</div>
-            <div class="nav-links">
-                <ul>
-                    <li><a href="#home" class="active">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </div>
-            <div class="theme-toggle">
-                <span class="theme-icon" id="theme-toggle">🌙</span>
-            </div>
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </nav>
-        
-        <div class="hero">
-            <h1 class="hero-title">AlexutzuSoft</h1>
-            <h2 class="hero-subtitle">Software Developer, Cybersecurity Researcher & Engineer</h2>
-            <div class="hero-buttons">
-                <a href="#projects" class="btn primary-btn">View My Projects</a>
-                <a href="#contact" class="btn outline-btn">Get In Touch</a>
-            </div>
-            <div class="hero-scroll-indicator">
-                <div class="mouse">
-                    <div class="wheel"></div>
+
+    <!-- Easter Egg Search -->
+    <div class="easter-egg-container">
+        <input type="text" id="easter-egg-input" placeholder="Enter a secret..." />
+        <div id="easter-egg-overlay" class="easter-egg-overlay hidden">
+            <div class="easter-egg-content">
+                <button id="close-easter-egg" class="close-btn">&times;</button>
+                <div class="ascii-art">
+    ╔═══════════════════════════════════════╗
+    ║  🎬 MATRIX VIBES UNLOCKED! 🎬         ║
+    ║                                       ║
+    ║      ░█▀▄░█▀▀░█▀▀░█▀█░░░█▀█░█▀█░█▀▀   ║
+    ║      ░█░█░█▀▀░█▀▀░█▀▀░░░█░█░█░█░█▀▀   ║
+    ║      ░█▄▀░▀▀▀░▀▀▀░▀░░░░░▀▀▀░▀░▀░▀▀▀   ║
+    ║                                       ║
+    ║    "There is no spoon... only code"   ║
+    ║                                       ║
+    ║        - Young Neo (Alexutzu) 🕶️       ║
+    ╚═══════════════════════════════════════╝
                 </div>
-                <div class="arrow">
-                    <span></span>
-                    <span></span>
-                    <span></span>
+                <div class="matrix-rain"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section 1: Full-screen Animated SVG Cover -->
+    <section id="hero" class="hero-section">
+        <div class="parallax-background">
+            <svg class="bg-sketch sketch-1" viewBox="0 0 200 200">
+                <path d="M20,50 Q50,20 80,50 T140,50" stroke="var(--accent-color)" stroke-width="2" fill="none" opacity="0.3"/>
+                <circle cx="60" cy="120" r="15" stroke="var(--accent-color)" stroke-width="2" fill="none" opacity="0.2"/>
+                <path d="M100,100 L120,120 M120,100 L100,120" stroke="var(--accent-color)" stroke-width="2" opacity="0.15"/>
+            </svg>
+            <svg class="bg-sketch sketch-2" viewBox="0 0 200 200">
+                <path d="M30,80 Q80,30 130,80 Q180,130 130,180" stroke="var(--secondary-color)" stroke-width="2" fill="none" opacity="0.2"/>
+                <rect x="40" y="40" width="30" height="30" stroke="var(--secondary-color)" stroke-width="2" fill="none" opacity="0.15"/>
+            </svg>
+            <svg class="bg-sketch sketch-3" viewBox="0 0 200 200">
+                <polygon points="100,20 120,60 80,60" stroke="var(--accent-color)" stroke-width="2" fill="none" opacity="0.1"/>
+                <path d="M20,150 Q50,120 80,150 Q110,180 140,150" stroke="var(--secondary-color)" stroke-width="1.5" fill="none" opacity="0.2"/>
+            </svg>
+        </div>
+        
+        <div class="hero-content">
+            <div class="logo-container">
+                <svg id="animated-logo" class="animated-logo" viewBox="0 0 200 100">
+                    <!-- Initial dot that morphs into initials -->
+                    <circle id="initial-dot" cx="100" cy="50" r="3" fill="var(--accent-color)"/>
+                    <!-- Letters that appear after morphing -->
+                    <g id="initials" opacity="0">
+                        <!-- A -->
+                        <path d="M40,80 L60,20 L80,80 M45,65 L75,65" stroke="var(--text-primary)" stroke-width="3" fill="none"/>
+                        <!-- U -->
+                        <path d="M120,20 L120,65 Q120,80 140,80 Q160,80 160,65 L160,20" stroke="var(--text-primary)" stroke-width="3" fill="none"/>
+                    </g>
+                </svg>
+            </div>
+            
+            <h1 class="hero-title">
+                <span class="highlight">Alexutzu</span>
+                <br>
+                <span class="subtitle">14-Year-Old Innovator & CEO</span>
+            </h1>
+            
+            <p class="hero-description">
+                Building the future with Python, C#, AI platforms, and sleek dark UIs.
+                <br>
+                <em>Scaling dreams, one line of code at a time.</em>
+            </p>
+            
+            <div class="scroll-indicator">
+                <div class="scroll-arrow"></div>
+                <span>Scroll to explore</span>
+            </div>
+        </div>
+
+        <!-- Audio for hero section -->
+        <audio id="hero-audio" loop preload="metadata">
+            <source src="assets/audio/hero-ambient.mp3" type="audio/mpeg">
+        </audio>
+    </section>
+
+    <!-- Section 2: Interactive "About Me" -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            
+            <div class="virtual-room">
+                <!-- Chatbot Avatar -->
+                <div class="avatar-container">
+                    <div class="avatar">
+                        <div class="avatar-face">
+                            <div class="eyes">
+                                <div class="eye left-eye"></div>
+                                <div class="eye right-eye"></div>
+                            </div>
+                            <div class="mouth"></div>
+                        </div>
+                        <div class="speech-bubble" id="avatar-speech">
+                            <p>Hey there! I'm Alexutzu. Click around my room to learn more about me!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interactive Objects -->
+                <div class="room-objects">
+                    <div class="interactive-object coffee-mug" data-info="coffee">
+                        <div class="object-tooltip">☕ Coffee Mug</div>
+                    </div>
+                    <div class="interactive-object bookshelf" data-info="books">
+                        <div class="object-tooltip">📚 Bookshelf</div>
+                    </div>
+                    <div class="interactive-object computer" data-info="tech">
+                        <div class="object-tooltip">💻 Setup</div>
+                    </div>
+                    <div class="interactive-object trophy" data-info="achievements">
+                        <div class="object-tooltip">🏆 Achievements</div>
+                    </div>
+                </div>
+
+                <!-- Speech Bubble Overlays -->
+                <div class="info-overlays">
+                    <div class="info-overlay" id="coffee-info">
+                        <h3>☕ Fuel for Innovation</h3>
+                        <p>I run on coffee and curiosity! Each cup powers late-night coding sessions and breakthrough moments. My favorite blend? A strong dark roast that matches my UI preferences.</p>
+                        <button class="close-overlay">×</button>
+                    </div>
+
+                    <div class="info-overlay" id="books-info">
+                        <h3>📚 Knowledge Arsenal</h3>
+                        <p>From "Clean Code" to "The Art of War," my bookshelf spans programming philosophy, business strategy, and sci-fi. Currently reading about neural networks and quantum computing.</p>
+                        <button class="close-overlay">×</button>
+                    </div>
+
+                    <div class="info-overlay" id="tech-info">
+                        <h3>💻 Battle Station</h3>
+                        <p>My setup: Custom-built PC with dual monitors, mechanical keyboard that sounds like rain on code. Running Python and C# IDEs side by side, with Orbin AI platform always in development.</p>
+                        <button class="close-overlay">×</button>
+                    </div>
+
+                    <div class="info-overlay" id="achievements-info">
+                        <h3>🏆 Milestones & Dreams</h3>
+                        <p>CEO at 14, building AI platforms, mastering robotics and cybersecurity. Goal: Scale my projects to fund luxury adventures with friends and revolutionize tech—all before 18!</p>
+                        <button class="close-overlay">×</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </header>
 
-    <main>
-        <section id="about" class="section">
-            <div class="container">
-                <h2 class="section-title">About Me</h2>
-                <div class="about-content">
-                    <div class="about-text">
-                        <p>Hello! I'm AlexutzuSoft, a dedicated young software developer and hacker with a deep passion for building powerful tools and systems. I specialize in crafting secure, efficient, and innovative applications — from Discord bots and mod menus to full-scale web utilities and custom programming languages.</p>
-                        <p>With a strong foundation in both software and embedded systems, I love solving technical challenges, experimenting with cutting-edge tech, and pushing the boundaries of what's possible at my age.</p>
-                        <div class="about-stats">
-                            <div class="stat">
-                                <span class="stat-value">4+</span>
-                                <span class="stat-label">Years Coding</span>
-                            </div>
-                            <div class="stat">
-                                <span class="stat-value">60+</span>
-                                <span class="stat-label">Projects Built</span>
-                            </div>
-                            <div class="stat">
-                                <span class="stat-value">10+</span>
-                                <span class="stat-label">Technologies</span>
-                            </div>
-                        </div>
+        <!-- Audio for about section -->
+        <audio id="about-audio" loop preload="metadata">
+            <source src="assets/audio/about-ambient.mp3" type="audio/mpeg">
+        </audio>
+    </section>
 
-                    </div>
-                    
-                    <div class="skills">
-                        <h3>Technical Skills</h3>
-                        <div class="skill-tags">
-                            <span class="skill-tag">Python</span>
-                            <span class="skill-tag">C#</span>
-                            <span class="skill-tag">C++</span>
-                            <span class="skill-tag">Java</span>
-                            <span class="skill-tag">JavaScript</span>
-                            <span class="skill-tag">HTML</span>
-                            <span class="skill-tag">CSS</span>
-                            <span class="skill-tag">Linux</span>
-                            <span class="skill-tag">Raspberry Pi</span>
-                            <span class="skill-tag">Kali Linux</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="projects" class="section">
-            <div class="container">
-                <h2 class="section-title">Projects</h2>
-                <p class="section-description">A showcase of my GitHub repositories</p>
-                
-                <div id="projects-loader" class="loader">
-                    <div class="loader-spinner"></div>
-                </div>
-                
-                <div id="projects-grid" class="projects-grid">
-                    <!-- Projects will be loaded here via JavaScript -->
-                </div>
-            </div>
-        </section>
-
-        <section id="contact" class="section">
-            <div class="container">
-                <h2 class="section-title">Get In Touch</h2>
-                
-                <div class="contact-container">
-                    <div class="social-links">
-                        <h3>Connect With Me</h3>
-                        <div class="social-icons">
-                            <a href="https://github.com/AlexutzuSxft" target="_blank" class="social-icon" aria-label="GitHub">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                                </svg>
-                            </a>
-                            <a href="javascript:void(0)" class="social-icon" id="discord-btn" aria-label="Discord">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" pointer-events="none">
-                                    <path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.608 1.2495-1.8447-.2762-3.6823-.2762-5.4899 0-.1634-.3933-.4052-.8742-.6091-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9857 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z" pointer-events="none"/>
-                                </svg>
-                            </a>
-                            <a href="https://instagram.com/alexutzusxft" class="social-icon" aria-label="Instagram">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer>
+    <!-- Section 3: Skill Timeline as Game Map -->
+    <section id="skills" class="skills-section">
         <div class="container">
-            <p>Copyright © AlexutzuSoft 2025</p>
-            <button id="scroll-top" class="scroll-top" aria-label="Scroll to top">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                    <path d="M12 3l8 8h-6v10h-4v-10h-6z"></path>
+            <h2 class="section-title">Skill Timeline</h2>
+            
+            <div class="game-map">
+                <svg class="map-path" viewBox="0 0 1000 600">
+                    <path id="skill-path" d="M50,500 Q200,400 350,450 Q500,300 650,350 Q800,250 950,300" 
+                          stroke="var(--accent-color)" stroke-width="4" fill="none" stroke-dasharray="10,5"/>
                 </svg>
-            </button>
+
+                <div class="skill-levels">
+                    <!-- Python Level -->
+                    <div class="skill-level" data-skill="python" style="left: 8%; top: 75%;">
+                        <div class="level-icon">🐍</div>
+                        <div class="level-label">Python Mastery</div>
+                        <div class="loot-box">
+                            <div class="loot-content">
+                                <h4>Python Expertise</h4>
+                                <pre><code>
+# AI Platform Core
+class OrbitAI:
+    def __init__(self):
+        self.innovation = True
+        self.impact = "Global"
+    
+    def revolutionize(self):
+        return "The future starts here"
+                                </code></pre>
+                                <p>Building Orbin AI platform and automation tools since age 12.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- C# Level -->
+                    <div class="skill-level" data-skill="csharp" style="left: 25%; top: 60%;">
+                        <div class="level-icon">🔷</div>
+                        <div class="level-label">C# Applications</div>
+                        <div class="loot-box">
+                            <div class="loot-content">
+                                <h4>C# Development</h4>
+                                <pre><code>
+public class Innovation
+{
+    private readonly string _vision = "Transform Tech";
+    
+    public async Task<Success> BuildFuture()
+    {
+        return await CreateImpact();
+    }
+}
+                                </code></pre>
+                                <p>Desktop applications and game development with modern C#.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- AI/ML Level -->
+                    <div class="skill-level" data-skill="ai" style="left: 45%; top: 45%;">
+                        <div class="level-icon">🤖</div>
+                        <div class="level-label">AI & Machine Learning</div>
+                        <div class="loot-box">
+                            <div class="loot-content">
+                                <h4>AI Innovation</h4>
+                                <img src="assets/images/ai-architecture.svg" alt="AI Architecture" style="max-width: 100%; height: auto;">
+                                <p>Neural networks, deep learning, and custom AI model development.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Robotics Level -->
+                    <div class="skill-level" data-skill="robotics" style="left: 65%; top: 52%;">
+                        <div class="level-icon">🤖</div>
+                        <div class="level-label">Robotics</div>
+                        <div class="loot-box">
+                            <div class="loot-content">
+                                <h4>Robotics Engineering</h4>
+                                <div class="robot-demo">
+                                    <div class="robot-icon">🦾</div>
+                                    <p>Autonomous systems, sensor integration, and mechanical design.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cybersecurity Level -->
+                    <div class="skill-level" data-skill="security" style="left: 85%; top: 40%;">
+                        <div class="level-icon">🛡️</div>
+                        <div class="level-label">Cybersecurity</div>
+                        <div class="loot-box">
+                            <div class="loot-content">
+                                <h4>Security Expertise</h4>
+                                <div class="security-matrix">
+                                    <div class="matrix-code">01001000 01100001 01100011</div>
+                                    <div class="matrix-code">01101011 01100101 01110010</div>
+                                </div>
+                                <p>Ethical hacking, penetration testing, and security architecture.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Audio for skills section -->
+        <audio id="skills-audio" loop preload="metadata">
+            <source src="assets/audio/skills-ambient.mp3" type="audio/mpeg">
+        </audio>
+    </section>
+
+    <!-- Section 4: Live Code Playground -->
+    <section id="playground" class="playground-section">
+        <div class="container">
+            <h2 class="section-title">Live Code Playground</h2>
+            
+            <div class="playground-container">
+                <div class="code-editor">
+                    <div class="editor-header">
+                        <span class="editor-title">JavaScript Editor</span>
+                        <button id="run-code" class="run-button">▶ Run Code</button>
+                    </div>
+                    <textarea id="code-input" placeholder="// Write your JavaScript code here...
+// Try drawing on the canvas!
+
+const canvas = document.getElementById('live-canvas');
+const ctx = canvas.getContext('2d');
+
+// Example: Animated circle
+let x = 50, y = 50, dx = 2, dy = 2;
+
+function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+    // Draw bouncing ball
+    ctx.beginPath();
+    ctx.arc(x, y, 20, 0, Math.PI * 2);
+    ctx.fillStyle = '#00ff88';
+    ctx.fill();
+    
+    x += dx;
+    y += dy;
+    
+    if (x < 20 || x > canvas.width - 20) dx = -dx;
+    if (y < 20 || y > canvas.height - 20) dy = -dy;
+    
+    requestAnimationFrame(animate);
+}
+
+animate();">
+                    </textarea>
+                </div>
+                
+                <div class="canvas-container">
+                    <div class="canvas-header">
+                        <span class="canvas-title">Live Output</span>
+                        <button id="clear-canvas" class="clear-button">Clear</button>
+                    </div>
+                    <canvas id="live-canvas" width="400" height="300"></canvas>
+                    <div id="code-output" class="code-output"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Audio for playground section -->
+        <audio id="playground-audio" loop preload="metadata">
+            <source src="assets/audio/playground-ambient.mp3" type="audio/mpeg">
+        </audio>
+    </section>
+
+    <!-- Section 5: Footer -->
+    <footer id="footer" class="footer-section">
+        <div class="container">
+            <div class="footer-content">
+                <div class="signature-container">
+                    <svg class="handwritten-signature" viewBox="0 0 300 100">
+                        <path id="signature-path" d="M20,60 Q40,30 60,50 Q80,70 100,45 Q120,20 140,40 Q160,60 180,35 Q200,10 220,30 Q240,50 260,25 Q280,40 300,20" 
+                              stroke="var(--accent-color)" stroke-width="2.5" fill="none" 
+                              stroke-dasharray="400" stroke-dashoffset="400"/>
+                        <text x="150" y="85" text-anchor="middle" font-family="cursive" font-size="14" fill="var(--text-secondary)">
+                            - Alexutzu
+                        </text>
+                    </svg>
+                </div>
+
+                <div class="social-links">
+                    <a href="#" class="social-link" data-platform="github">
+                        <svg class="social-icon" viewBox="0 0 24 24">
+                            <path fill="currentColor" d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                        <div class="flourish"></div>
+                    </a>
+
+                    <a href="#" class="social-link" data-platform="linkedin">
+                        <svg class="social-icon" viewBox="0 0 24 24">
+                            <path fill="currentColor" d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                        </svg>
+                        <div class="flourish"></div>
+                    </a>
+
+                    <a href="#" class="social-link" data-platform="twitter">
+                        <svg class="social-icon" viewBox="0 0 24 24">
+                            <path fill="currentColor" d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                        </svg>
+                        <div class="flourish"></div>
+                    </a>
+
+                    <a href="#" class="social-link" data-platform="email">
+                        <svg class="social-icon" viewBox="0 0 24 24">
+                            <path fill="currentColor" d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-.904.732-1.636 1.636-1.636h.98L12 11.27l9.384-7.449h.98c.904 0 1.636.732 1.636 1.636z"/>
+                        </svg>
+                        <div class="flourish"></div>
+                    </a>
+                </div>
+
+                <div class="footer-text">
+                    <p>&copy; 2024 Alexutzu. Building tomorrow, today.</p>
+                    <p class="footer-quote">"Innovation is the ability to see change as an opportunity - not a threat."</p>
+                </div>
+            </div>
         </div>
     </footer>
 
-    <div class="discord-popup">
-        <div class="discord-popup-content">
-            <button class="discord-popup-close">&times;</button>
-            <div class="discord-popup-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                    <path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.608 1.2495-1.8447-.2762-3.6823-.2762-5.4899 0-.1634-.3933-.4052-.8742-.6091-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9857 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z"/>
-                </svg>
-            </div>
-            <div class="discord-popup-username">@alexutzusoft_</div>
-            <button class="discord-popup-copy">Copy Username</button>
-        </div>
-    </div>
-
-    <script src="scripts.js"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>
