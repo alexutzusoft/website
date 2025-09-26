@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alexutzu | Dev Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <main class="app-shell" id="terminal">
+        <header class="terminal-header">
+            <div class="traffic-lights">
+                <span class="dot dot-close" aria-hidden="true">
+                    <span class="close-icon">×</span>
+                </span>
+                <span class="dot dot-min" aria-hidden="true">
+                    <span class="min-icon">−</span>
+                </span>
+                <span class="dot dot-max" aria-hidden="true">
+                    <span class="max-icon">+</span>
+                </span>
+            </div>
+            <p class="terminal-title">guest@portfolio:~</p>
+        </header>
+        <section class="terminal-window" role="region" aria-live="polite">
+            <div id="output" class="terminal-output" aria-label="Terminal output"></div>
+            <div class="input-line" aria-label="Terminal input">
+                <span class="prompt" aria-hidden="true">guest λ</span>
+                <input type="text" id="command-input" autocomplete="off" spellcheck="false" aria-label="Command input">
+            </div>
+        </section>
+    </main>
+
+    <template id="line-template">
+        <div class="line">
+            <span class="prompt">guest λ</span>
+            <span class="command"></span>
+        </div>
+    </template>
+
+    <script src="scripts.js" type="module"></script>
+</body>
+</html>

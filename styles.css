@@ -1,0 +1,465 @@
+:root {
+    color-scheme: dark;
+    --terminal-bg: #0f172a;
+    --terminal-fg: #d1fae5;
+    --terminal-accent: #34d399;
+    --terminal-shadow: rgba(15, 118, 110, 0.28);
+    --terminal-glass: rgba(30, 41, 59, 0.8);
+    --terminal-grid: rgba(52, 211, 153, 0.04);
+    --terminal-border: rgba(52, 211, 153, 0.32);
+    --terminal-muted: rgba(148, 163, 184, 0.88);
+    --font-stack: "Fira Code", "SFMono-Regular", "Consolas", "Roboto Mono", monospace;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: radial-gradient(circle at top, rgba(148, 163, 184, 0.16), transparent 55%),
+                radial-gradient(circle at bottom, rgba(52, 211, 153, 0.12), transparent 65%),
+                #020617;
+    font-family: var(--font-stack);
+    color: var(--terminal-fg);
+    transition: background 240ms ease, color 240ms ease;
+    overflow: hidden;
+    cursor: default;
+}
+
+/* Terminal boot animation */
+@keyframes terminal-boot-in {
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+.boot-message {
+    color: #ffffff;
+    font-family: var(--font-stack);
+    opacity: 0;
+    transform: translateX(-10px);
+    animation: boot-line-in 0.4s ease forwards;
+}
+
+@keyframes boot-line-in {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.boot-ascii {
+    color: #ffffff;
+    font-size: 0.7rem;
+    line-height: 1;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+}
+
+body.no-select {
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+.app-shell {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: clamp(420px, 64vw, 880px);
+    height: clamp(420px, 68vh, 760px);
+    min-width: 340px;
+    min-height: 360px;
+    background: linear-gradient(152deg, rgba(15, 23, 42, 0.9), rgba(15, 118, 110, 0.2) 68%, rgba(15, 23, 42, 0.92));
+    border-radius: 18px;
+    border: 1px solid rgba(148, 163, 184, 0.16);
+    box-shadow: 0 28px 72px rgba(15, 23, 42, 0.58);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.95);
+    backdrop-filter: blur(12px);
+    animation: terminal-boot-in 0.8s ease forwards;
+    animation-delay: 0.3s;
+    transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+                width 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                top 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Minimized state */
+.app-shell.minimized {
+    height: auto;            /* fit to header only */
+    min-height: 0;           /* override base min-height */
+    /* keep current width; do not force width */
+    overflow: hidden;
+}
+
+.app-shell.minimized .terminal-window {
+    display: none;
+}
+
+/* Maximized state */
+.app-shell.maximized {
+    width: 95vw;
+    height: 90vh;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Close animation */
+.app-shell.closing {
+    animation: terminal-close 0.3s ease forwards;
+    pointer-events: none;
+}
+
+@keyframes terminal-close {
+    to {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.8);
+    }
+}
+
+/* Resize cursors for edges and corners */
+.app-shell.cursor-n-resize { cursor: n-resize !important; }
+.app-shell.cursor-s-resize { cursor: s-resize !important; }
+.app-shell.cursor-e-resize { cursor: e-resize !important; }
+.app-shell.cursor-w-resize { cursor: w-resize !important; }
+.app-shell.cursor-ne-resize { cursor: ne-resize !important; }
+.app-shell.cursor-nw-resize { cursor: nw-resize !important; }
+.app-shell.cursor-se-resize { cursor: se-resize !important; }
+.app-shell.cursor-sw-resize { cursor: sw-resize !important; }
+
+@keyframes float-in {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -55%) scale(0.94);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+.app-shell.is-dragging {
+    cursor: grabbing !important;
+    box-shadow: 0 32px 96px rgba(15, 23, 42, 0.72), 0 0 0 1px rgba(52, 211, 153, 0.18);
+    transform: scale(1.02);
+    transition: none;
+    z-index: 1000;
+}
+
+.app-shell.is-resizing {
+    cursor: nwse-resize !important;
+    box-shadow: 0 16px 48px rgba(15, 23, 42, 0.64), 0 0 0 2px rgba(52, 211, 153, 0.18);
+    transition: none;
+    z-index: 1000;
+}
+
+.app-shell.is-dragging .terminal-header {
+    cursor: grabbing !important;
+}
+
+
+.terminal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 18px;
+    background: linear-gradient(135deg, rgba(15, 118, 110, 0.3), rgba(15, 23, 42, 0.6));
+    border-bottom: 1px solid rgba(52, 211, 153, 0.24);
+    cursor: grab;
+    user-select: none;
+    transition: background 200ms ease, cursor 100ms ease;
+    position: relative;
+}
+
+.terminal-header:hover {
+    background: linear-gradient(135deg, rgba(15, 118, 110, 0.35), rgba(15, 23, 42, 0.5));
+}
+
+.terminal-header:active {
+    cursor: grabbing;
+}
+
+.traffic-lights {
+    display: flex;
+    gap: 9px;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 999px;
+    display: inline-flex;
+    position: relative;
+    background: rgba(15, 118, 110, 0.22);
+    transition: all 160ms ease;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+/* Larger clickable area */
+.dot::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: -8px;
+    right: -8px;
+    bottom: -8px;
+    border-radius: 999px;
+    z-index: 1001;
+}
+
+.dot::after {
+    content: "";
+    position: absolute;
+    inset: 2px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.9);
+    opacity: 0;
+    transition: opacity 200ms ease;
+}
+
+.dot:hover {
+    transform: scale(1.1);
+}
+
+.dot:active {
+    transform: scale(0.95);
+}
+
+.terminal-header:hover .dot::after {
+    opacity: 1;
+}
+
+.dot-close { 
+    background: #ef4444; 
+}
+
+.dot-close:hover .close-icon {
+    opacity: 1;
+}
+
+.dot-close .close-icon {
+    content: "×";
+    position: absolute;
+    color: white;
+    font-size: 10px;
+    font-weight: bold;
+    z-index: 1002;
+    opacity: 0;
+    transition: opacity 200ms ease;
+    pointer-events: none;
+}
+
+.dot-min { 
+    background: #facc15; 
+}
+
+.dot-min:hover .min-icon {
+    opacity: 1;
+}
+
+.dot-min .min-icon {
+    content: "−";
+    position: absolute;
+    color: white;
+    font-size: 10px;
+    font-weight: bold;
+    z-index: 1002;
+    opacity: 0;
+    transition: opacity 200ms ease;
+    pointer-events: none;
+}
+
+.dot-max { 
+    background: #22c55e; 
+}
+
+.dot-max:hover .max-icon {
+    opacity: 1;
+}
+
+.dot-max .max-icon {
+    content: "+";
+    position: absolute;
+    color: white;
+    font-size: 10px;
+    font-weight: bold;
+    z-index: 1002;
+    opacity: 0;
+    transition: opacity 200ms ease;
+    pointer-events: none;
+}
+
+.terminal-title {
+    margin: 0;
+    font-size: 0.95rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: rgba(226, 232, 240, 0.86);
+}
+
+.terminal-window {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background:
+        repeating-linear-gradient(
+            0deg,
+            var(--terminal-grid) 0 1px,
+            transparent 1px 24px
+        ),
+        rgba(15, 23, 42, 0.86);
+    flex: 1;
+    overflow: hidden;
+}
+
+.terminal-output {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    font-size: clamp(0.92rem, 2.5vw, 1rem);
+    line-height: 1.6;
+    padding: clamp(22px, 4vw, 32px);
+    padding-bottom: 0;
+    
+    /* Hide scrollbars completely */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+}
+
+.terminal-output::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+}
+
+.line {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    transform: translateX(-12px);
+    opacity: 0;
+    animation: slide-in 280ms ease forwards;
+}
+
+@keyframes slide-in {
+    from {
+        opacity: 0;
+        transform: translateX(-24px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.prompt {
+    color: rgba(52, 211, 153, 0.95);
+    font-weight: 600;
+}
+
+.command,
+.response {
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+.response {
+    color: rgba(226, 232, 240, 0.9);
+}
+
+.response.error {
+    color: #ef4444;
+}
+
+.input-line {
+    position: sticky;
+    bottom: 0;
+    display: grid;
+    grid-template-columns: auto minmax(160px, 1fr);
+    align-items: center;
+    gap: 12px;
+    margin: 18px clamp(22px, 4vw, 32px) clamp(22px, 4vw, 32px) clamp(22px, 4vw, 32px);
+    padding: 12px 14px;
+    border-radius: 12px;
+    border: 1px solid var(--terminal-border);
+    background: var(--terminal-glass);
+    box-shadow: inset 0 2px 8px rgba(2, 6, 23, 0.8);
+    backdrop-filter: blur(6px);
+    transition: border 200ms ease, box-shadow 200ms ease;
+    z-index: 10;
+}
+
+.input-line:focus-within {
+    border-color: rgba(52, 211, 153, 0.62);
+    box-shadow: 0 0 0 4px rgba(52, 211, 153, 0.24);
+}
+
+#command-input {
+    background: transparent;
+    border: none;
+    outline: none;
+    font: inherit;
+    color: inherit;
+    padding: 0;
+    min-width: 0;
+}
+
+#command-input::placeholder {
+    color: rgba(148, 163, 184, 0.48);
+}
+
+@media (max-width: 720px) {
+    body {
+        overflow: auto;
+    }
+
+    .app-shell {
+        position: static;
+        transform: none;
+        width: calc(100vw - 24px);
+        height: auto;
+        margin: 24px auto;
+        min-height: 60vh;
+    }
+
+    .terminal-header {
+        padding: 12px 14px;
+        cursor: default;
+    }
+
+    .terminal-title {
+        font-size: 0.9rem;
+    }
+
+    .terminal-output {
+        padding: 20px;
+        padding-bottom: 0;
+    }
+
+    .input-line {
+        grid-template-columns: auto 1fr;
+        margin: 18px 20px 20px 20px;
+    }
+
+
+    .app-shell.is-dragging,
+    .app-shell.is-resizing {
+        transform: none;
+        box-shadow: 0 24px 48px var(--terminal-shadow);
+    }
+}
+
