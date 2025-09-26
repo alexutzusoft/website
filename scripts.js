@@ -1639,7 +1639,26 @@ function resetToCenter() {
 }
 
 // Terminal Boot Sequence
+let hasBooted = false;
+
 async function runTerminalBoot() {
+    // Only run boot sequence once
+    if (hasBooted) {
+        // Just ensure input is visible and focused
+        const inputLine = document.querySelector('.input-line');
+        if (inputLine) {
+            inputLine.style.opacity = '1';
+        }
+        inputEl.focus();
+        return;
+    }
+    
+    hasBooted = true;
+    
+    // Clear any existing boot messages first
+    const existingBootMessages = document.querySelectorAll('.boot-message, .boot-ascii');
+    existingBootMessages.forEach(el => el.remove());
+    
     // Hide input initially
     const inputLine = document.querySelector('.input-line');
     inputLine.style.opacity = '0';
@@ -1721,6 +1740,10 @@ let lastHeightBeforeMinimize = null;
 
 function minimizeTerminal() {
     if (isAnimatingWindow) return;
+    
+    // Prevent any stray boot messages during window operations
+    const bootMessages = document.querySelectorAll('.boot-message, .boot-ascii');
+    bootMessages.forEach(el => el.remove());
 
     const headerHeight = headerEl.getBoundingClientRect().height;
     const rect = shellEl.getBoundingClientRect();
@@ -1781,12 +1804,22 @@ function minimizeTerminal() {
             shellEl.style.height = '';
             isAnimatingWindow = false;
             isMinimized = false;
+            
+            // Ensure input is visible after restore
+            const inputLine = document.querySelector('.input-line');
+            if (inputLine) {
+                inputLine.style.opacity = '1';
+            }
         };
         shellEl.addEventListener('transitionend', onEnd);
     }
 }
 
 function maximizeTerminal() {
+    // Prevent any stray boot messages during window operations
+    const bootMessages = document.querySelectorAll('.boot-message, .boot-ascii');
+    bootMessages.forEach(el => el.remove());
+    
     if (isMaximized) {
         // Restore
         shellEl.classList.remove('maximized');
@@ -1821,7 +1854,12 @@ window.addEventListener("click", () => {
     if (inputEl && inputEl.focus) inputEl.focus();
 });
 
+let isInitialized = false;
+
 window.addEventListener("load", async () => {
+    if (isInitialized) return;
+    isInitialized = true;
+    
     // Add traffic light event listeners
     const closeBtn = document.querySelector('.dot-close');
     const minBtn = document.querySelector('.dot-min');
